@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="operationsPage" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OperationsController">
+   <children>
+      <VBox alignment="CENTER">
+         <children>
+            <Label fx:id="TXT_greeting">
+               <font>
+                  <Font name="Century Gothic Bold Italic" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="TXT_username">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="10.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Withdraw" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/withdraw2.jpeg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Deposit" textAlignment="CENTER">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#checkBalance" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Balance">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/balance.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButton" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Transfer">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/money-transfer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#othersPage" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Others">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/other3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#removeCard" prefWidth="200.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 100;" text="Eject">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/atm.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

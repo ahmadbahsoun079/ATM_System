@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="loginPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+   <children>
+      <ImageView fitHeight="140.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Icons/loginIcon.png" />
+         </image>
+      </ImageView>
+      <Label style="-fx-font-weight: bold;" text="Username">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="username" maxWidth="150.0" promptText="Enter username">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </TextField>
+      <Label style="-fx-font-weight: bold;" text="PIN">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <PasswordField fx:id="password" maxWidth="150.0" promptText="Enter PIN">
+         <font>
+            <Font name="Century Gothic Bold" size="13.0" />
+         </font>
+      </PasswordField>
+      <HBox alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#loginAccount" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-cursor: hand;" text="Login">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/log-in.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#returnToMainPage" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-cursor: hand;" text="Eject">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/remove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="40.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="No account?">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font></Label>
+            <Label onMouseClicked="#createAccount" style="-fx-cursor: hand;" text=" create one" textFill="BLUE">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font></Label>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

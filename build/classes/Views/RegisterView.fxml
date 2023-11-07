@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="createPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
+   <children>
+      <HBox alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="First Name*">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="firstname" maxWidth="150.0" onAction="#getFirstName" promptText="Enter first name">
+                     <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="Last Name*">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="lastname" disable="true" maxWidth="150.0" onAction="#getLastName" promptText="Enter last name">
+                     <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="Phone Number&quot;">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="phonenumber" disable="true" maxWidth="150.0" onAction="#getPhoneNumber" promptText="Enter phone number">
+                     <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="Address*">
+                     <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="address" disable="true" maxWidth="150.0" onAction="#getAddress" promptText="Capital-City-Street">
+                     <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <Label text="Birthday*">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="10.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <DatePicker fx:id="birthday" disable="true" editable="false" onAction="#getDate" promptText="DD/MM/YYYY">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </DatePicker>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Gender*">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <VBox>
+               <children>
+                  <RadioButton fx:id="male" disable="true" mnemonicParsing="false" onAction="#getGender" text="Male">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genderGP" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="female" disable="true" mnemonicParsing="false" onAction="#getGender" text="Female" toggleGroup="$genderGP" />
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="30.0" top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <Label fx:id="required" alignment="CENTER" text="All the information above are required to create account" textFill="#940000">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="create" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#onCreateAccount" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 30;" text="Create">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/create.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ProgressIndicator fx:id="progress" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" progress="0.0" />
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#cancelRegister" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 30;" text="Cancel">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

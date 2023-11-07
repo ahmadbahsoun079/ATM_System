@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="otherOp" alignment="CENTER" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OthersController">
+   <children>
+      <Button fx:id="editInfo" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleButton" prefWidth="220.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 50;" text="Edit information">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icons/editinfo2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="checkHistory" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleButton" prefWidth="220.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 50;" text="Check Balance History">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icons/history.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#createAnotherAccount" prefWidth="220.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 50;" text="Create another account">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icons/addanotheraccount.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#returnToOperations" prefWidth="220.0" style="-fx-background-color: white; -fx-cursor: hand; -fx-background-radius: 50;" text="Return to Operations">
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Icons/return2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</VBox>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/money-transfer.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Main/Main.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome3.gif</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/OthersModel.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/loginIcon.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/removecard.jpeg</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/history.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/delete.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/return2.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/TransferController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/arrow.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/OperationFactory/OperationsFactory.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/withdraw2.jpeg</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/OperationFactory/Operations.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/HistoryController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/DepositModel.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/OthersController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/cancel.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/addanotheraccount.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/LoginController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/SQLTable.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/HistoryModel.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/insertcard.jpeg</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/other3.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/log-in.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/insert-card.gif</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/DataBaseConnection/DBConnection.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/history2.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/OperationsModel.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome2.gif</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome.gif</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/editinfo2.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Main/MainController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/OperationsController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/remove.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/balance.png</file>
+        </group>
+    </open-files>
+</project-private>
