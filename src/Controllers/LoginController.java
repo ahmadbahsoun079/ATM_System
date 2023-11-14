@@ -24,6 +24,7 @@ public class LoginController implements Initializable {
     private LoginModel model;
     @FXML private TextField username;
     @FXML private TextField password;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -33,6 +34,7 @@ public class LoginController implements Initializable {
     @FXML public void loginAccount(ActionEvent event) {
         if(model.LoggingAccount(username.getText(), password.getText())){
             try {
+                
                 Parent view = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                 Scene scene = new Scene(view);
                 Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

@@ -1,7 +1,8 @@
 package Controllers;
 
 
-import Models.DepositModel;
+
+import Models.Usermodel;
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,11 +39,11 @@ public class DepositController implements Operations, Initializable {
     @FXML private Button buttonDeposit;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
-    private DepositModel model;
+    private Usermodel model;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new DepositModel();
+        model = new Usermodel();
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {

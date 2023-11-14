@@ -23,7 +23,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("MAO");
+            stage.setTitle("ATM");
             stage.show();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

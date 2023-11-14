@@ -38,6 +38,7 @@ public class LoginModel {
                     System.out.println(OperationsModel.getAccNumber() +" "+OperationsModel.getAccPassword());
                     OperationsModel.setGreetingTXT("Welcome back " +name);
                     OperationsModel.setUserTXT("Username: " +username);
+                    
                 }
             }
             else{

@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.HistoryModel;
+import Models.Usermodel;
 import OperationFactory.Operations;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,13 +31,13 @@ public class HistoryController implements Operations, Initializable {
     @FXML private TableColumn<SQLTable, Date> date;
     @FXML private TableColumn<SQLTable,Integer> accnb1;
     @FXML private  TableColumn<SQLTable,Integer>accnb2;
-    private HistoryModel model;
+    private Usermodel model;
     private ObservableList<SQLTable> list;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            model=new HistoryModel();
+            model=new Usermodel();
             list = FXCollections.observableArrayList();
             ResultSet set= model.printHistory();
             

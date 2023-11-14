@@ -1,7 +1,8 @@
 package Controllers;
 
 import Models.OperationsModel;
-import Models.TransferModel;
+
+import Models.Usermodel;
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,11 +41,11 @@ public class TransferController implements Operations, Initializable {
     @FXML private Button button;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea; //This is text field where whatever user types in appears
-    private TransferModel model;
+    private Usermodel model;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new TransferModel();
+        model = new Usermodel();
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException //This function handles button events

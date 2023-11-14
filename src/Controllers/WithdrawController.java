@@ -1,7 +1,7 @@
 package Controllers;
 
 
-import Models.WithdrawModel;
+import Models.Usermodel;
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,10 +37,10 @@ public class WithdrawController implements Initializable, Operations {
     @FXML private Button buttonWithdraw;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
-    private WithdrawModel model;
+    private Usermodel model;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {model = new WithdrawModel();}
+    public void initialize(URL url, ResourceBundle rb) {model = new Usermodel();}
  
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException , IOException {
         if (event.getSource() == button0) {

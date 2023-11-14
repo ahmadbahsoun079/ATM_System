@@ -5,12 +5,15 @@
         <group>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/money-transfer.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Main/Main.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/LoginModel.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome3.gif</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/WithdrawController.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/OthersModel.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/loginIcon.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/removecard.jpeg</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/history.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/delete.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Main/MHO.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/return2.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/TransferController.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/arrow.png</file>
@@ -18,7 +21,9 @@
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/withdraw2.jpeg</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/OperationFactory/Operations.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/HistoryController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/EditInfoModel.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/DepositModel.java</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/DepositController.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/OthersController.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/cancel.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/addanotheraccount.png</file>
@@ -31,6 +36,7 @@
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/insert-card.gif</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/DataBaseConnection/DBConnection.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/history2.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/UserModel.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/OperationsModel.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome2.gif</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/welcome.gif</file>
@@ -39,6 +45,7 @@
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Controllers/OperationsController.java</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/remove.png</file>
             <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Views/Icons/balance.png</file>
+            <file>file:/C:/Users/lenovo/Documents/NetBeansProjects/ATM/src/Models/WithdrawModel.java</file>
         </group>
     </open-files>
 </project-private>
