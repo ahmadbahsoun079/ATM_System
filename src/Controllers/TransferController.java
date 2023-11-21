@@ -1,9 +1,13 @@
 package Controllers;
 
-import Models.OperationsModel;
+import Models.Account;
 
-import Models.Usermodel;
+import Models.Account;
 import OperationFactory.Operations;
+import adapter.Converter;
+import adapter.CurrencyConverter;
+import adapter.USDEUROConverter;
+import adapter.USDLBPConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +26,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 
 public class TransferController implements Operations, Initializable {
@@ -41,11 +47,15 @@ public class TransferController implements Operations, Initializable {
     @FXML private Button button;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea; //This is text field where whatever user types in appears
-    private Usermodel model;
+    @FXML private HBox vchoice;
+    @FXML private ChoiceBox<String> myChoiseBox;
+    
+    private String[] currtype={"usd","eur","lbp"};
+    private Account model;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new Usermodel();
+        model = new Account();
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException //This function handles button events
@@ -77,6 +87,7 @@ public class TransferController implements Operations, Initializable {
             Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             newStage.setScene(scene);
             newStage.show();
+            
         }
     }
 
@@ -91,18 +102,24 @@ public class TransferController implements Operations, Initializable {
         Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newStage.setScene(scene);
         newStage.show();
+        
+        myChoiseBox.getItems().addAll(currtype);
+       
+        
     }
 
     @FXML public void transferAmount(ActionEvent event) throws SQLException, ClassNotFoundException {
         Alert alert;
         try{
             if (((Button) event.getSource()).getText().equals("Check")) {
-                if((Integer.parseInt(resultArea.getText()) )!= OperationsModel.getAccNumber()){
+                if((Integer.parseInt(resultArea.getText()) )!= Account.getAccNumber()){
                     model.setAccount(Integer.parseInt(resultArea.getText()));
                     if(model.checkAccount()) {
                         resultArea.clear();
                         button.setText("Transfer");
                         label.setText("Enter the amount to be transfered");
+                       
+                        myChoiseBox.getItems().addAll(currtype);
                     }
                     else {
                         alert=new Alert(Alert.AlertType.ERROR);
@@ -123,14 +140,30 @@ public class TransferController implements Operations, Initializable {
                 }
             }
             else if(((Button)event.getSource()).getText().equals("Transfer")){
-                if(model.checkamount(Integer.parseInt(resultArea.getText()))){
+                float amount=0;
+                if(myChoiseBox.getValue().equals("eur")){
+                            Converter usdeuro = new USDEUROConverter();
+                            CurrencyConverter converter = new CurrencyConverter(usdeuro);
+                            amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
+                            
+                            
+                        }else {if(myChoiseBox.getValue().equals("lbp")){
+                             Converter usdlbn = new USDLBPConverter();
+                            CurrencyConverter converter = new CurrencyConverter(usdlbn);
+                            amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
+                            
+                        }else{amount=Float.parseFloat(resultArea.getText());}}
+                if(model.checkamount(amount)){
                     try {
-                        model.transferAmount(Integer.parseInt(resultArea.getText()));
+                        
+                        
+                        
+                        model.transferAmount(amount);
                         alert=new Alert(Alert.AlertType.CONFIRMATION);
                         alert.initModality(Modality.APPLICATION_MODAL);
                         alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
                         alert.setContentText("Amount is valid.\nOperation went successfully, "
-                                +resultArea.getText()+"$ were transfered from your balance");
+                                +amount+"$ were transfered from your balance with "+1+" TVA");
                         alert.show();
                         Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                         Scene scene = new Scene(root);

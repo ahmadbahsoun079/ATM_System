@@ -16,7 +16,7 @@ public class EditInfoModel  {
 
             stmt= Main.con.prepareStatement(sql);
             stmt.setInt(1, password);
-            stmt.setInt(2, OperationsModel.getAccNumber());
+            stmt.setInt(2, Account.getAccNumber());
             stmt.executeUpdate();
         }catch(SQLException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class EditInfoModel  {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             stmt= Main.con.prepareStatement(sql);
-            stmt.setInt(1, OperationsModel.getAccNumber());
+            stmt.setInt(1, Account.getAccNumber());
             ResultSet set = stmt.executeQuery();
             if(set.next())
             {

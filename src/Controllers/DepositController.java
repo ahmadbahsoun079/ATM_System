@@ -2,7 +2,8 @@ package Controllers;
 
 
 
-import Models.Usermodel;
+
+
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +22,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
-
+import Models.Account;
+import Models.NormalUseraccount;
+import Models.VipUseraccount;
 
 public class DepositController implements Operations, Initializable {
 
@@ -39,11 +42,24 @@ public class DepositController implements Operations, Initializable {
     @FXML private Button buttonDeposit;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
-    private Usermodel model;
+    
+    private Account model;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new Usermodel();
+        
+        if(Account.getaccounttype().equals("vip")){
+         model = new VipUseraccount();   
+        }
+        
+         
+        if(Account.getaccounttype().equals("normal")){
+         model = new NormalUseraccount();   
+        }
+        //model = new VipUseraccount();
+       
+        
+        
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {

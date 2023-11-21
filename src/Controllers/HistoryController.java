@@ -1,6 +1,8 @@
 package Controllers;
 
-import Models.Usermodel;
+import comparator.sortbyamount;
+import comparator.sortbydate;
+import Models.Account;
 import OperationFactory.Operations;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,13 +35,13 @@ public class HistoryController implements Operations, Initializable {
     @FXML private TableColumn<SQLTable, Date> date;
     @FXML private TableColumn<SQLTable,Integer> accnb1;
     @FXML private  TableColumn<SQLTable,Integer>accnb2;
-    private Usermodel model;
+    private Account model;
     private ObservableList<SQLTable> list;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            model=new Usermodel();
+            model=new Account();
             list = FXCollections.observableArrayList();
             ResultSet set= model.printHistory();
             
@@ -63,10 +67,17 @@ public class HistoryController implements Operations, Initializable {
     }
     
     public void checkHistory(ActionEvent event) throws SQLException, ClassNotFoundException {
-        
+        FXCollections.sort(list, new sortbydate());
         table.refresh();
         
         
+    }
+    public void checknewHistory(ActionEvent event) throws SQLException, ClassNotFoundException  {
+       
+     
+       FXCollections.sort(list, new sortbyamount());
+       
+       table.refresh();
     }
     
     public void returnBack(ActionEvent event) throws IOException {

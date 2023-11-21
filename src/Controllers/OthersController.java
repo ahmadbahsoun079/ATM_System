@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.OperationsModel;
+import Models.Account;
 import Models.OthersModel;
 import OperationFactory.Operations;
 import OperationFactory.OperationsFactory;
@@ -79,7 +79,7 @@ public class OthersController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(OperationsModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

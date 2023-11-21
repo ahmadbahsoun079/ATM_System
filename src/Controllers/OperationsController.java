@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.OperationsModel;
+import Models.Account;
 import OperationFactory.Operations;
 import OperationFactory.OperationsFactory;
 import javafx.event.ActionEvent;
@@ -24,15 +24,15 @@ import javafx.stage.Modality;
 
 public class OperationsController implements Initializable {
 
-    private OperationsModel model;
+    private Account model;
     @FXML private Label TXT_greeting;
     @FXML private Label TXT_username;
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        model = new OperationsModel();
-        TXT_greeting.setText(OperationsModel.getGreetingTXT());
-        TXT_username.setText(OperationsModel.getUserTXT());
+        model = new Account();
+        TXT_greeting.setText(Account.getGreetingTXT());
+        TXT_username.setText(Account.getUserTXT());
     }
     
     @FXML public void removeCard(ActionEvent event){
@@ -43,12 +43,12 @@ public class OperationsController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(OperationsModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @FXML public void checkBalance(ActionEvent event){
-        int balance = model.getBalance();
+        float balance = model.getBalance();
         Alert alert;        
         
         if(balance == -1){
@@ -75,7 +75,7 @@ public class OperationsController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(OperationsModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

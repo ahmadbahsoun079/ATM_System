@@ -34,7 +34,7 @@ public class RegisterModel {
     }
     
     public Boolean createAccount(String firstname, String lastname, int phoneNumber,
-            String address, String BDay, String gender) throws SQLException, ClassNotFoundException {
+            String address, String BDay, String gender,String acctype) throws SQLException, ClassNotFoundException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String sql = "INSERT INTO "
                 + "customer(firstname, lastname, phone_number, address, date_of_birth, gender) "
@@ -46,27 +46,30 @@ public class RegisterModel {
         customer.setString(4, address);
         customer.setString(5, BDay);
         customer.setString(6, gender);
+        
+        //customer.setString(7, acctype);
         if(customer.executeUpdate() == 1){
             System.out.println("Data insert successfully");
             rs = customer.getGeneratedKeys();
             if(rs.next()){
                 int cust_ID = rs.getInt(1);
-                String sql2 = "INSERT INTO account(acc_pass, acc_balance, cust_number) VALUES(?,?,?);";
+                String sql2 = "INSERT INTO account(acc_pass, acc_balance, cust_number,acc_type) VALUES(?,?,?,?);";
                 account = Main.con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
                 int pass = (int) (Math.random() * 10000);
                 account.setInt(1, pass);
                 account.setInt(2, 0);
                 account.setInt(3, cust_ID);
+                account.setString(4, acctype);
                 if(account.executeUpdate() == 1){
                     System.out.println("Account created successfully");
                     rs = account.getGeneratedKeys();
                     if(rs.next()){
                         int acc_number = rs.getInt(1);
-                        OperationsModel.setCustomerID(cust_ID);
-                        OperationsModel.setAccNumber(acc_number);
-                        OperationsModel.setAccPassword(pass);
-                        OperationsModel.setUserTXT("Username: " +acc_number);
-                        OperationsModel.setGreetingTXT("Hello " +firstname);
+                        Account.setCustomerID(cust_ID);
+                        Account.setAccNumber(acc_number);
+                        Account.setAccPassword(pass);
+                        Account.setUserTXT("Username: " +acc_number);
+                        Account.setGreetingTXT("Hello " +firstname);
                         rs.close();
                         customer.close();
                         account.close();

@@ -28,7 +28,7 @@ public class OthersModel {
             this.acc_pass = (int)(Math.random()*10000);
             stmt.setInt(1, this.acc_pass);
             stmt.setInt(2, 0);
-            stmt.setInt(3, OperationsModel.getCustID());
+            stmt.setInt(3, Account.getCustID());
             if(stmt.executeUpdate() == 1){
                 System.out.println("Account created successfully");
                 rs = stmt.getGeneratedKeys();

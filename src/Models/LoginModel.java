@@ -17,7 +17,7 @@ public class LoginModel {
     public Boolean LoggingAccount(String username, String password){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String sql = "SELECT cust_number "
+            String sql = "SELECT cust_number, acc_type "
                     + "FROM account "
                     + "WHERE acc_number=? AND acc_pass=?";
             stmt = Main.Main.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -26,18 +26,21 @@ public class LoginModel {
             rs = stmt.executeQuery();
             if(rs.next()){
                 int custID = rs.getInt(1);
+                String acctype=rs.getString(2);
                 String sql2 = "SELECT firstname FROM customer WHERE cust_ID=?";
                 stmt = Main.Main.con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
                 stmt.setInt(1, custID);
                 rs = stmt.executeQuery();
                 if(rs.next()){
                     String name = rs.getString(1);
-                    OperationsModel.setCustomerID(custID);
-                    OperationsModel.setAccNumber(Integer.valueOf(username));
-                    OperationsModel.setAccPassword(Integer.valueOf(password));
-                    System.out.println(OperationsModel.getAccNumber() +" "+OperationsModel.getAccPassword());
-                    OperationsModel.setGreetingTXT("Welcome back " +name);
-                    OperationsModel.setUserTXT("Username: " +username);
+                    Account.setCustomerID(custID);
+                    Account.setAccNumber(Integer.valueOf(username));
+                    Account.setAccPassword(Integer.valueOf(password));
+                    Account.setaccounttype(acctype);
+                    
+                    System.out.println(Account.getAccNumber() +" "+Account.getAccPassword());
+                    Account.setGreetingTXT("Welcome back " +name);
+                    Account.setUserTXT("Username: " +username);
                     
                 }
             }

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -14,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="createPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
+<VBox fx:id="createPage" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #EEEEFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
    <children>
       <HBox alignment="CENTER">
          <children>
@@ -138,6 +144,24 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="female" disable="true" mnemonicParsing="false" onAction="#getGender" text="Female" toggleGroup="$genderGP" />
+               </children>
+            </VBox>
+            <Label text="Type">
+               <font>
+                  <Font name="Century Gothic Bold" size="16.0" />
+               </font>
+            </Label>
+            <VBox>
+               <children>
+                  <RadioButton fx:id="normal" disable="true" mnemonicParsing="false" onAction="#getaccounttype" text="normal">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genderGP1" />
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="vip" disable="true" mnemonicParsing="false" onAction="#getaccounttype" text="vip" toggleGroup="$genderGP1" />
                </children>
             </VBox>
          </children>

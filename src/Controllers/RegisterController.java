@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.OperationsModel;
+import Models.Account;
 import Models.RegisterModel;
 
 import java.io.IOException;
@@ -37,12 +37,16 @@ public class RegisterController implements Initializable {
     @FXML private TextField address;
     @FXML private RadioButton male;
     @FXML private RadioButton female;
+    @FXML private RadioButton normal;
+    @FXML private RadioButton vip;
     @FXML private DatePicker birthday;
     @FXML private ProgressIndicator progress;
     @FXML private Button create;
     @FXML private Label required;
     private RegisterModel model;
     private String BDay, gender;
+    private String acctype;
+    
     private Alert alert;
     
     @Override
@@ -71,6 +75,10 @@ public class RegisterController implements Initializable {
             male.setDisable(true);
             female.setSelected(false);
             female.setDisable(true);
+             vip.setDisable(true);
+             vip.setSelected(false);
+            normal.setDisable(true);
+            normal.setSelected(false);
             create.setDisable(true);
             progress.setProgress(0.0);
         }
@@ -92,6 +100,8 @@ public class RegisterController implements Initializable {
             female.setSelected(false);
             male.setDisable(true);
             female.setDisable(true);
+             vip.setDisable(true);
+            normal.setDisable(true);
             create.setDisable(true);
             progress.setProgress(0.15);
         }
@@ -116,6 +126,8 @@ public class RegisterController implements Initializable {
             female.setSelected(false);
             male.setDisable(true);
             female.setDisable(true);
+            vip.setDisable(true);
+            normal.setDisable(true);
             create.setDisable(true);
             progress.setProgress(0.3);
         }
@@ -133,6 +145,8 @@ public class RegisterController implements Initializable {
             female.setSelected(false);
             male.setDisable(true);
             female.setDisable(true);
+            vip.setDisable(true);
+            normal.setDisable(true);
             create.setDisable(true);
             progress.setProgress(0.45);
         }
@@ -144,12 +158,23 @@ public class RegisterController implements Initializable {
             BDay = date.toString();
             male.setDisable(false);
             female.setDisable(false);
+            vip.setDisable(true);
+            normal.setDisable(true);
             progress.setProgress(0.8);
         }
     }
     
     @FXML public void getGender(ActionEvent event){        
         if(male.isSelected() || female.isSelected()){
+            progress.setProgress(1);
+            create.setDisable(false);
+            vip.setDisable(false);
+            normal.setDisable(false);
+        }
+    }
+    
+    @FXML public void getaccounttype(ActionEvent event){        
+        if(normal.isSelected() || vip.isSelected()){
             progress.setProgress(1);
             create.setDisable(false);
         }
@@ -161,18 +186,24 @@ public class RegisterController implements Initializable {
         else
             if(female.isSelected())
                 gender = female.getText();
+        
+         if(vip.isSelected())
+            acctype = vip.getText();
+        else
+            if(normal.isSelected())
+                acctype = normal.getText();
         Boolean check = model.checkInformation(firstname.getText(), lastname.getText(), Integer.valueOf(phonenumber.getText()));
         if(check){
             Boolean flag = model.createAccount(firstname.getText(),
-                    lastname.getText(), Integer.parseInt(phonenumber.getText()), address.getText(), BDay, gender);
+                    lastname.getText(), Integer.parseInt(phonenumber.getText()), address.getText(), BDay, gender,acctype);
             if(flag){
                 try {
                     alert = new Alert(Alert.AlertType.WARNING);
                     alert.initModality(Modality.APPLICATION_MODAL);
                     alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
                     alert.setContentText("**This message appears only once**\n"
-                            +"Your username: "+OperationsModel.getAccNumber()
-                            +"\nYour PIN: "+OperationsModel.getAccPassword());
+                            +"Your username: "+Account.getAccNumber()
+                            +"\nYour PIN: "+Account.getAccPassword());
                     alert.show();
                     Parent view = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                     Scene scene = new Scene(view);
