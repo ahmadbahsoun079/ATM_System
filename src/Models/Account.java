@@ -16,6 +16,7 @@ public  class Account<T> {
     private static int acc_number, acc_pass, cust_ID;
     private static String txt_username, txt_greeting;
     private static int acc;
+    private static float tva=0;
     DateTimeFormatter d=DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
     LocalDateTime now=LocalDateTime.now();
     
@@ -60,6 +61,12 @@ public  class Account<T> {
     }
     public static String getGreetingTXT(){
         return Account.txt_greeting;
+    }
+    public static void settva(float tva){
+        Account.tva=tva;
+    }
+    public static Float gettva(){
+        return tva;
     }
     
     public float getBalance() {
@@ -146,7 +153,7 @@ public  class Account<T> {
     
     
     
-    public  boolean checkamount(double amount) throws SQLException, ClassNotFoundException{
+    public  boolean checkamount(float amount) throws SQLException, ClassNotFoundException{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         float a;
         String query= "SELECT acc_balance FROM account WHERE acc_number=?;" ;
@@ -181,17 +188,17 @@ public  class Account<T> {
     }
     
     
-    public void transferAmount(double amount) throws ClassNotFoundException, SQLException {
+    public void transferAmount(float amount) throws ClassNotFoundException, SQLException {
        
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";
         PreparedStatement stmt=Main.con.prepareStatement(q1,Statement.RETURN_GENERATED_KEYS);
-        stmt.setDouble(1, amount);
+        stmt.setFloat(1, amount);
         stmt.setInt(2, Account.getAccNumber());
         stmt.executeUpdate();
         String q2="UPDATE account SET acc_balance=acc_balance+? Where acc_number=?; ";
         PreparedStatement stmt1=Main.con.prepareStatement(q2,Statement.RETURN_GENERATED_KEYS);
-        stmt1.setDouble(1, amount);
+        stmt1.setFloat(1, amount);
         stmt1.setInt(2, getAccount());
         stmt1.executeUpdate();
         DateTimeFormatter d=DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
@@ -200,7 +207,7 @@ public  class Account<T> {
         PreparedStatement stmt3;
         stmt3=Main.con.prepareStatement(query2,Statement.RETURN_GENERATED_KEYS);
         stmt3.setString(1, "Transfer");
-        stmt3.setDouble(2, amount);
+        stmt3.setFloat(2, amount);
         stmt3.setString(3, d.format(now));
         stmt3.setInt(4,Account.getAccNumber());
         stmt3.setInt(5, getAccount());
@@ -217,4 +224,6 @@ public  class Account<T> {
         ResultSet set = stmt.executeQuery();
         return set;
     }
+
+   
 }

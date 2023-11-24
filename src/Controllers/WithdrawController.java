@@ -2,6 +2,8 @@ package Controllers;
 
 
 import Models.Account;
+import Models.NormalUseraccount;
+import Models.VipUseraccount;
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +42,15 @@ public class WithdrawController implements Initializable, Operations {
     private Account model;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {model = new Account();}
+    public void initialize(URL url, ResourceBundle rb) {
+        if(Account.getaccounttype().equals("vip")){
+         model = new VipUseraccount();   
+        }
+        
+         
+        else{
+         model = new NormalUseraccount();   
+        }}
  
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException , IOException {
         if (event.getSource() == button0) {
@@ -73,7 +83,7 @@ public class WithdrawController implements Initializable, Operations {
                     alert.initModality(Modality.APPLICATION_MODAL);
                     alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
                     alert.setContentText("Operation went successfully, "
-                            +amount+"$ was withdrawn from your account");
+                            +amount+"$ was withdrawn from your account with "+Account.gettva()+"$ TVA");
                     alert.show();
                     Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                     Scene scene=new Scene(root);

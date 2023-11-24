@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class VipUseraccount extends Account {
     
+     
      @Override
      public  void makeDeposit(float amount) throws ClassNotFoundException
     {
@@ -58,6 +59,7 @@ public class VipUseraccount extends Account {
             Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     
      
      public  void withdraw(float amount) throws SQLException, ClassNotFoundException{
         

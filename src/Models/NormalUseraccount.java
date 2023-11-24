@@ -1,8 +1,10 @@
+package Models;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Models;
+
 
 import Main.Main;
 import java.sql.PreparedStatement;
@@ -20,10 +22,13 @@ import java.util.logging.Logger;
  */
 public class NormalUseraccount extends Account {
   
-     @Override
+    
+    @Override
      public  void makeDeposit(float amount) throws ClassNotFoundException
     {
-        
+        float tva=(float) (amount*0.001);
+        amount-=tva;
+        Account.settva(tva);
         
         try {
             
@@ -60,8 +65,12 @@ public class NormalUseraccount extends Account {
     }
      
     
-     @Override
+    
+    @Override
      public  void withdraw(float amount) throws SQLException, ClassNotFoundException{
+        float tva=(float) (amount*0.001);
+        amount-=tva;
+        Account.settva(tva);
         
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";

@@ -53,10 +53,10 @@ public class DepositController implements Operations, Initializable {
         }
         
          
-        if(Account.getaccounttype().equals("normal")){
+        else{
          model = new NormalUseraccount();   
         }
-        //model = new VipUseraccount();
+       
        
         
         
@@ -91,7 +91,7 @@ public class DepositController implements Operations, Initializable {
                 Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
-                alert.setContentText("Your Operation went successfuly, " +amount+"$ were added to your balance.");
+                alert.setContentText("Your Operation went successfuly, " +amount+"$ were added to your balance with "+Account.gettva()+"$ TVA");
                 alert.show();
                 Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                 Scene scene=new Scene(root);

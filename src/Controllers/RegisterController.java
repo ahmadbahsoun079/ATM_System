@@ -190,7 +190,7 @@ public class RegisterController implements Initializable {
          if(vip.isSelected())
             acctype = vip.getText();
         else
-            if(normal.isSelected())
+            
                 acctype = normal.getText();
         Boolean check = model.checkInformation(firstname.getText(), lastname.getText(), Integer.valueOf(phonenumber.getText()));
         if(check){

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -47,12 +49,33 @@
                      </HBox.margin>
                   </ImageView>
                </children></HBox>
-            <HBox fx:id="vchoice" prefHeight="100.0" prefWidth="200.0" visible="true" >
+            <HBox fx:id="hchoice" prefHeight="100.0" prefWidth="200.0" visible="true">
                <children>
-                  <ChoiceBox fx:id="myChoiseBox" prefWidth="150.0">
+                  <Label fx:id="label1" prefHeight="27.0" prefWidth="328.0" text="Which currency do you want to send ?">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
+                  </Label>
+                  <ChoiceBox fx:id="myChoiseBox" prefHeight="25.0" prefWidth="51.0">
+                     <HBox.margin>
+                        <Insets left="1.0" top="10.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </ChoiceBox>
                </children>
             </HBox>

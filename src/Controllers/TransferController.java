@@ -34,6 +34,8 @@ import javafx.stage.Modality;
 public class TransferController implements Operations, Initializable {
 
     @FXML Label label;
+     @FXML Label label1;
+    
     @FXML private Button button0;
     @FXML private Button button1;
     @FXML private Button button2;
@@ -47,15 +49,21 @@ public class TransferController implements Operations, Initializable {
     @FXML private Button button;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea; //This is text field where whatever user types in appears
-    @FXML private HBox vchoice;
+    
+    
+    @FXML private HBox hchoice;
     @FXML private ChoiceBox<String> myChoiseBox;
     
-    private String[] currtype={"usd","eur","lbp"};
+    private String[] currtype={"USD","EUR","LBP"};
     private Account model;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model = new Account();
+        myChoiseBox.visibleProperty().setValue(false);
+        label1.visibleProperty().setValue(false);
+        
+        
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException //This function handles button events
@@ -103,7 +111,7 @@ public class TransferController implements Operations, Initializable {
         newStage.setScene(scene);
         newStage.show();
         
-        myChoiseBox.getItems().addAll(currtype);
+        
        
         
     }
@@ -118,7 +126,8 @@ public class TransferController implements Operations, Initializable {
                         resultArea.clear();
                         button.setText("Transfer");
                         label.setText("Enter the amount to be transfered");
-                       
+                        myChoiseBox.visibleProperty().setValue(true);
+                        label1.visibleProperty().setValue(true);
                         myChoiseBox.getItems().addAll(currtype);
                     }
                     else {
@@ -141,13 +150,13 @@ public class TransferController implements Operations, Initializable {
             }
             else if(((Button)event.getSource()).getText().equals("Transfer")){
                 float amount=0;
-                if(myChoiseBox.getValue().equals("eur")){
+                if(myChoiseBox.getValue().equals("EUR")){
                             Converter usdeuro = new USDEUROConverter();
                             CurrencyConverter converter = new CurrencyConverter(usdeuro);
                             amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
                             
                             
-                        }else {if(myChoiseBox.getValue().equals("lbp")){
+                        }else {if(myChoiseBox.getValue().equals("LBP")){
                              Converter usdlbn = new USDLBPConverter();
                             CurrencyConverter converter = new CurrencyConverter(usdlbn);
                             amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
@@ -163,7 +172,7 @@ public class TransferController implements Operations, Initializable {
                         alert.initModality(Modality.APPLICATION_MODAL);
                         alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
                         alert.setContentText("Amount is valid.\nOperation went successfully, "
-                                +amount+"$ were transfered from your balance with "+1+" TVA");
+                                +amount+"$ were transfered from your balance");
                         alert.show();
                         Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                         Scene scene = new Scene(root);
