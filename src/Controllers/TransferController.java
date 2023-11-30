@@ -59,7 +59,7 @@ public class TransferController implements Operations, Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = new Account();
+        model = Account.setInstance();
         myChoiseBox.visibleProperty().setValue(false);
         label1.visibleProperty().setValue(false);
         
@@ -120,7 +120,7 @@ public class TransferController implements Operations, Initializable {
         Alert alert;
         try{
             if (((Button) event.getSource()).getText().equals("Check")) {
-                if((Integer.parseInt(resultArea.getText()) )!= Account.getAccNumber()){
+                if((Integer.parseInt(resultArea.getText()) )!= model.getAccNumber()){
                     model.setAccount(Integer.parseInt(resultArea.getText()));
                     if(model.checkAccount()) {
                         resultArea.clear();

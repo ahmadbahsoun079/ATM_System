@@ -4,6 +4,7 @@ package Controllers;
 
 
 
+import Generics.*;
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +24,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 import Models.Account;
-import Models.NormalUseraccount;
-import Models.VipUseraccount;
+
 
 public class DepositController implements Operations, Initializable {
 
@@ -43,18 +43,18 @@ public class DepositController implements Operations, Initializable {
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
     
-    private Account model;
-    
+    private TypeOfAccounts model;
+    Account acc=null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        if(Account.getaccounttype().equals("vip")){
-         model = new VipUseraccount();   
+        Account acc=Account.setInstance();
+        if(acc.getaccounttype().equals("vip")){
+         model = new VIPAccount();   
         }
         
          
         else{
-         model = new NormalUseraccount();   
+         model = new NormalAccount();   
         }
        
        
@@ -86,12 +86,15 @@ public class DepositController implements Operations, Initializable {
         }else if (event.getSource()== buttonDeposit) {
             try {
                 int amount=Integer.parseInt(resultArea.getText());
-                model.makeDeposit(amount);
+                float famount=model.makeDeposit(amount);
+                float fees=amount-famount;
                 resultArea.clear();
+                  
                 Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
                 alert.initModality(Modality.APPLICATION_MODAL);
                 alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
-                alert.setContentText("Your Operation went successfuly, " +amount+"$ were added to your balance with "+Account.gettva()+"$ TVA");
+              
+                alert.setContentText("Your Operation went successfuly, " +famount+"$ were added to your balance since we take "+fees+"$ fees");
                 alert.show();
                 Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                 Scene scene=new Scene(root);

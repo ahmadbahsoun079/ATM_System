@@ -1,6 +1,7 @@
 package Controllers;
 
-import Models.EditInfoModel;
+import Models.Account;
+
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ import javafx.stage.Modality;
 
 
 public class EditInfoController implements Operations, Initializable {
-    private EditInfoModel model;
+    
     @FXML private Button button0;
     @FXML private Button button1;
     @FXML private Button button2;
@@ -37,9 +38,9 @@ public class EditInfoController implements Operations, Initializable {
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
     @FXML private Label lbl;
-
+    private Account model;        
     @Override
-    public void initialize(URL location, ResourceBundle resources) {model =new EditInfoModel();}
+    public void initialize(URL location, ResourceBundle resources) {model=Account.setInstance();}
 
     @FXML public void handleButtonAction(ActionEvent event) throws IOException, ClassNotFoundException {
         if (event.getSource() == button0) {

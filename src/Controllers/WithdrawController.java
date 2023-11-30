@@ -1,9 +1,11 @@
 package Controllers;
 
 
+import Generics.NormalAccount;
+import Generics.TypeOfAccounts;
+import Generics.VIPAccount;
 import Models.Account;
-import Models.NormalUseraccount;
-import Models.VipUseraccount;
+
 import OperationFactory.Operations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,19 +41,19 @@ public class WithdrawController implements Initializable, Operations {
     @FXML private Button buttonWithdraw;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
-    private Account model;
-    
+   private TypeOfAccounts model;
+    Account acc=null;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(Account.getaccounttype().equals("vip")){
-         model = new VipUseraccount();   
+        acc=Account.setInstance();
+        if(acc.getaccounttype().equals("vip")){
+         model = new VIPAccount();   
+        }else{
+         model = new NormalAccount();   
         }
-        
          
-        else{
-         model = new NormalUseraccount();   
-        }}
- 
+        
+    }
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException , IOException {
         if (event.getSource() == button0) {
             resultArea.appendText("0");
@@ -76,14 +78,19 @@ public class WithdrawController implements Initializable, Operations {
         }else if(event.getSource()==buttonWithdraw) {
             try {
                 int amount=Integer.parseInt(resultArea.getText());
-                if(model.checkamount(amount)) {
-                    model.withdraw(amount);
+                
+                if(acc.checkamount(amount)) {
+                   
+                    float famount=model.withdraw(amount);
+                   
+                    float fees=amount-famount;
                     resultArea.clear();
                     Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
                     alert.initModality(Modality.APPLICATION_MODAL);
                     alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
+                    
                     alert.setContentText("Operation went successfully, "
-                            +amount+"$ was withdrawn from your account with "+Account.gettva()+"$ TVA");
+                            +famount+"$ was withdrawn from your account since we take  "+fees+"$ fees");
                     alert.show();
                     Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                     Scene scene=new Scene(root);

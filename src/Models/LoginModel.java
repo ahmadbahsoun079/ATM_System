@@ -1,5 +1,7 @@
 package Models;
 
+import Generics.NormalAccount;
+import Generics.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,15 +34,31 @@ public class LoginModel {
                 stmt.setInt(1, custID);
                 rs = stmt.executeQuery();
                 if(rs.next()){
-                    String name = rs.getString(1);
-                    Account.setCustomerID(custID);
-                    Account.setAccNumber(Integer.valueOf(username));
-                    Account.setAccPassword(Integer.valueOf(password));
-                    Account.setaccounttype(acctype);
                     
-                    System.out.println(Account.getAccNumber() +" "+Account.getAccPassword());
-                    Account.setGreetingTXT("Welcome back " +name);
-                    Account.setUserTXT("Username: " +username);
+                    TypeOfAccounts type;
+                     
+                    String name = rs.getString(1);
+                    
+                    if(acctype.equals("vip")){
+                        
+                         type=new VIPAccount();
+                         
+                    }else{
+                        
+                         type=new NormalAccount();
+                         
+                    }
+                    Account acc=Account.getInstance(type);
+                    
+                    acc.setCustomerID(custID);
+                    acc.setAccNumber(Integer.valueOf(username));
+                    acc.setAccPassword(Integer.valueOf(password));
+                    acc.setaccounttype(acctype);
+                    
+                    
+                    System.out.println(acc.getAccNumber() +" "+acc.getAccPassword());
+                    acc.setGreetingTXT("Welcome back " +name);
+                    acc.setUserTXT("Username: " +username);
                     
                 }
             }

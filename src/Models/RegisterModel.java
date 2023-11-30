@@ -1,5 +1,8 @@
 package Models;
 
+import Generics.NormalAccount;
+import Generics.TypeOfAccounts;
+import Generics.VIPAccount;
 import Main.Main;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,12 +67,21 @@ public class RegisterModel {
                     System.out.println("Account created successfully");
                     rs = account.getGeneratedKeys();
                     if(rs.next()){
+                        TypeOfAccounts type;
                         int acc_number = rs.getInt(1);
-                        Account.setCustomerID(cust_ID);
-                        Account.setAccNumber(acc_number);
-                        Account.setAccPassword(pass);
-                        Account.setUserTXT("Username: " +acc_number);
-                        Account.setGreetingTXT("Hello " +firstname);
+                        if(acctype.equals("VIP")){
+                         type=new VIPAccount();
+                    }else{
+                         type=new NormalAccount();
+                    }
+                    Account acc=Account.getInstance(type);
+                       
+                        acc.setCustomerID(cust_ID);
+                        acc.setAccNumber(acc_number);
+                        acc.setAccPassword(pass);
+                        acc.setUserTXT("Username: " +acc_number);
+                        acc.setGreetingTXT("Hello " +firstname);
+                        acc.setaccounttype(acctype);
                         rs.close();
                         customer.close();
                         account.close();

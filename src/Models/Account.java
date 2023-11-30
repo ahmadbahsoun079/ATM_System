@@ -9,72 +9,92 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Generics.*;
+import java.io.IOException;
 
-public  class Account<T> {
-    
-    private static String accounttype;
-    private static int acc_number, acc_pass, cust_ID;
-    private static String txt_username, txt_greeting;
-    private static int acc;
-    private static float tva=0;
+public  class Account<T extends TypeOfAccounts> {
+
+    private static Account<?> account;
+    private T object;
+
+    private Account(T object){
+        this.object = object;
+    }
+
+    public static  <T extends TypeOfAccounts> Account<T> getInstance(T object){
+        if(account == null){
+            account = new Account<>(object);
+        }
+        return (Account<T>) account;
+    }
+    public static  <T extends TypeOfAccounts> Account<T> setInstance(){
+        return (Account<T>)account;
+    }
+   
+
+    private String accounttype;
+    private int acc_number, acc_pass, cust_ID;
+    private String txt_username, txt_greeting;
+    private int acc;
+    private float tva;
     DateTimeFormatter d=DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
     LocalDateTime now=LocalDateTime.now();
-    
-    public Account() {
-    } 
-    
-    
-    public static void setaccounttype(String type){
+
+    public void setaccounttype(String type){
         accounttype=type;
-        
     }
-    public static String  getaccounttype(){
+
+    public String  getaccounttype(){
         return accounttype;
     }
     
-    public static void setUserTXT(String username){
-        Account.txt_username = username;
+     public  void settva(float tva){
+      
+        this.tva=tva;
     }
-    public static void setGreetingTXT(String greeting){
-        Account.txt_greeting = greeting;
-    }
-    public static void setAccNumber(int acc_number){
-        Account.acc_number = acc_number;
-    }
-    public static void setAccPassword(int acc_pass){
-        Account.acc_pass = acc_pass;
-    }
-    public static void setCustomerID(int cust_ID){
-        Account.cust_ID = cust_ID;
-    }
-    public static int getAccNumber(){
-        return Account.acc_number;
-    }
-    public static int getAccPassword(){
-        return Account.acc_pass;
-    }
-    public static int getCustID(){
-        return Account.cust_ID;
-    }
-    public static String getUserTXT(){
-        return Account.txt_username;
-    }
-    public static String getGreetingTXT(){
-        return Account.txt_greeting;
-    }
-    public static void settva(float tva){
-        Account.tva=tva;
-    }
-    public static Float gettva(){
+    public  Float gettva(){
+       
         return tva;
     }
+    
+    public void setUserTXT(String username){
+        this.txt_username = username;
+    }
+    public void setGreetingTXT(String greeting){
+        this.txt_greeting = greeting;
+    }
+    public void setAccNumber(int acc_number){
+        this.acc_number = acc_number;
+    }
+    public void setAccPassword(int acc_pass){
+        this.acc_pass = acc_pass;
+    }
+    public  void setCustomerID(int cust_ID){
+        this.cust_ID = cust_ID;
+    }
+    public  int getAccNumber(){
+        return this.acc_number;
+    }
+    public  int getAccPassword(){
+        return this.acc_pass;
+    }
+    public  int getCustID(){
+        return this.cust_ID;
+    }
+    public  String getUserTXT(){
+        return this.txt_username;
+    }
+    public  String getGreetingTXT(){
+        return this.txt_greeting;
+    }
+   
     
     public float getBalance() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String sql = "SELECT acc_balance FROM account WHERE acc_number=?";
             PreparedStatement stmt = Main.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setFloat(1,Account.getAccNumber());
+            stmt.setFloat(1,this.getAccNumber());
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 return rs.getFloat(1);
@@ -88,77 +108,17 @@ public  class Account<T> {
     
     
     
-   
-    //done
-    public  void makeDeposit(float amount) throws ClassNotFoundException
-    {
-        
-        
-        try {
-            
-        
-            String query="UPDATE account SET acc_balance=acc_balance+? WHERE acc_number = ?;";
-            PreparedStatement stmt2;
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            stmt2=Main.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-            stmt2.setFloat(1, amount);
-            stmt2.setInt(2, Account.getAccNumber());
-            stmt2.executeUpdate();
-            String sql="SELECT acc_balance FROM account WHERE acc_number = ?;";
-            PreparedStatement stmt;
 
-            stmt = Main.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, Account.getAccNumber());
-            ResultSet set =stmt.executeQuery();
-            set.next();
-            int c= set.getInt(1);
-            System.out.println(c);
-            String query2="INSERT INTO transactions(trans_name,trans_amount,trans_date,acc_num1) VALUES(?,?,?,?);";
-            PreparedStatement stmt3=Main.con.prepareStatement(query2,Statement.RETURN_GENERATED_KEYS);
-            DateTimeFormatter date=DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
-            LocalDateTime time=LocalDateTime.now();
-
-            stmt3.setString(1, "Deposit");
-            stmt3.setFloat(2, amount);
-            stmt3.setString(3, date.format(time));
-            stmt3.setInt(4,Account.getAccNumber());
-            stmt3.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-  
-    
-    public  void withdraw(float amount) throws SQLException, ClassNotFoundException{
-        
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";
-        PreparedStatement stmt=Main.con.prepareStatement(q1,Statement.RETURN_GENERATED_KEYS);
-        stmt.setFloat(1, amount);
-        stmt.setInt(2, Account.getAccNumber());
-        stmt.executeUpdate();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
-        LocalDateTime date = LocalDateTime.now();
-        String query2="INSERT INTO transactions(trans_name,trans_amount,trans_date,acc_num1) VALUES(?,?,?,?);";
-        PreparedStatement stmt3;
-        stmt3=Main.con.prepareStatement(query2,Statement.RETURN_GENERATED_KEYS);
-        stmt3.setString(1, "Withdraw");
-        stmt3.setFloat(2, amount);
-        stmt3.setString(3, dateFormat.format(date));
-        stmt3.setInt(4,Account.getAccNumber());
-        stmt3.executeUpdate();
-    }
     
     
     
     
-    public  boolean checkamount(float amount) throws SQLException, ClassNotFoundException{
+    public boolean checkamount(float amount) throws SQLException, ClassNotFoundException{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         float a;
         String query= "SELECT acc_balance FROM account WHERE acc_number=?;" ;
         PreparedStatement stmt =Main.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-        stmt.setInt(1, Account.getAccNumber());
+        stmt.setInt(1, getAccNumber());
         ResultSet set =stmt.executeQuery();
         if(set.next()) {
             a=set.getFloat(1);
@@ -169,16 +129,16 @@ public  class Account<T> {
     
     
     
-    public  void setAccount(int a){
-        Account.acc = a;
+    public void setAccount(int a){
+       acc = a;
     }
     public int getAccount() {
-        return Account.acc;
+        return acc;
     }
 
     
     
-    public  boolean checkAccount() throws ClassNotFoundException, SQLException {
+    public boolean checkAccount() throws ClassNotFoundException, SQLException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String query="SELECT acc_number FROM account WHERE acc_number=?";
         PreparedStatement stmt=Main.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
@@ -194,7 +154,7 @@ public  class Account<T> {
         String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";
         PreparedStatement stmt=Main.con.prepareStatement(q1,Statement.RETURN_GENERATED_KEYS);
         stmt.setFloat(1, amount);
-        stmt.setInt(2, Account.getAccNumber());
+        stmt.setInt(2, getAccNumber());
         stmt.executeUpdate();
         String q2="UPDATE account SET acc_balance=acc_balance+? Where acc_number=?; ";
         PreparedStatement stmt1=Main.con.prepareStatement(q2,Statement.RETURN_GENERATED_KEYS);
@@ -209,7 +169,7 @@ public  class Account<T> {
         stmt3.setString(1, "Transfer");
         stmt3.setFloat(2, amount);
         stmt3.setString(3, d.format(now));
-        stmt3.setInt(4,Account.getAccNumber());
+        stmt3.setInt(4,getAccNumber());
         stmt3.setInt(5, getAccount());
         stmt3.executeUpdate();
     }
@@ -220,9 +180,52 @@ public  class Account<T> {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String query = "SELECT * FROM transactions WHERE acc_num1=?;";
         PreparedStatement stmt = Main.con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        stmt.setInt(1, Account.getAccNumber());
+        stmt.setInt(1, getAccNumber());
         ResultSet set = stmt.executeQuery();
         return set;
+    }
+ public void setPassword(int password) throws ClassNotFoundException   {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        String sql ="UPDATE account SET acc_pass=? WHERE acc_number=?;";
+        PreparedStatement stmt;
+        try {
+
+            stmt= Main.con.prepareStatement(sql);
+            stmt.setInt(1, password);
+            stmt.setInt(2, getAccNumber());
+            stmt.executeUpdate();
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean checkPassword(int pass) throws IOException {
+        String sql ="SELECT acc_pass FROM account WHERE acc_number=?;";
+        PreparedStatement stmt;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            stmt= Main.con.prepareStatement(sql);
+            stmt.setInt(1, getAccNumber());
+            ResultSet set = stmt.executeQuery();
+            if(set.next())
+            {
+                if(set.getInt(1)==pass)
+                    return true;
+            }
+        }catch(SQLException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean is_4Digit(int nb) {
+        int count = 0;
+        while(nb!=0) {
+            nb /= 10;
+            count++;
+        }
+        return count == 4;
     }
 
    
