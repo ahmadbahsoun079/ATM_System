@@ -16,7 +16,9 @@ public class VIPAccount implements TypeOfAccounts{
     Account acc=Account.setInstance();
 
     public VIPAccount() {
-        
+          System.out.println("00000");
+    System.out.println("i am vip");
+     System.out.println("00000");
     }
     
     
@@ -62,7 +64,9 @@ public class VIPAccount implements TypeOfAccounts{
      
      
      public  float withdraw(float amount) throws SQLException, ClassNotFoundException{
-        
+          System.out.println("11111111111111111111111111111");
+        System.out.println("i am vipwithdraw");
+            System.out.println("1111111111111111111");
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";
         PreparedStatement stmt=Main.con.prepareStatement(q1,Statement.RETURN_GENERATED_KEYS);

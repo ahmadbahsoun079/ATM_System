@@ -16,7 +16,9 @@ import java.util.logging.Logger;
 public class NormalAccount implements TypeOfAccounts{
      Account acc=Account.setInstance();
     public NormalAccount() {
-    
+        System.out.println("00000");
+    System.out.println("i am normal");
+     System.out.println("00000");
     }
     
      

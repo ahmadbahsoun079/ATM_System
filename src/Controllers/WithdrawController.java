@@ -24,6 +24,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.Modality;
+import proxey.AccountProxiy;
 
 
 
@@ -41,16 +42,18 @@ public class WithdrawController implements Initializable, Operations {
     @FXML private Button buttonWithdraw;
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
-   private TypeOfAccounts model;
+  //private TypeOfAccounts model;
+    private TypeOfAccounts proxiyaccount;
     Account acc=null;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         acc=Account.setInstance();
-        if(acc.getaccounttype().equals("vip")){
-         model = new VIPAccount();   
-        }else{
-         model = new NormalAccount();   
-        }
+//        if(acc.getaccounttype().equals("vip")){
+//         model = new VIPAccount();   
+//        }else{
+//         model = new NormalAccount();   
+//        }
+         proxiyaccount=new AccountProxiy();
          
         
     }
@@ -78,10 +81,10 @@ public class WithdrawController implements Initializable, Operations {
         }else if(event.getSource()==buttonWithdraw) {
             try {
                 int amount=Integer.parseInt(resultArea.getText());
-                
-                if(acc.checkamount(amount)) {
+                float famount=proxiyaccount.withdraw(amount);
+                if(famount!=-1) {
                    
-                    float famount=model.withdraw(amount);
+                    
                    
                     float fees=amount-famount;
                     resultArea.clear();

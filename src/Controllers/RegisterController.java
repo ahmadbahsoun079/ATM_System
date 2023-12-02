@@ -166,7 +166,7 @@ public class RegisterController implements Initializable {
     
     @FXML public void getGender(ActionEvent event){        
         if(male.isSelected() || female.isSelected()){
-            progress.setProgress(1);
+            progress.setProgress(0.9);
             create.setDisable(false);
             vip.setDisable(false);
             normal.setDisable(false);
