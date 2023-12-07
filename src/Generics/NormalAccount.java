@@ -14,11 +14,9 @@ import java.util.logging.Logger;
 
 
 public class NormalAccount implements TypeOfAccounts{
-     Account acc=Account.setInstance();
+     Account acc=Account.getInstance();
     public NormalAccount() {
-        System.out.println("00000");
-    System.out.println("i am normal");
-     System.out.println("00000");
+      
     }
     
      
@@ -51,7 +49,7 @@ public class NormalAccount implements TypeOfAccounts{
       public  float makeDeposit(float amount) throws ClassNotFoundException
     {
         
-        
+         Account acc2=Account.getInstance();
         float fees=(float) (amount*0.001);       
         amount=amount-fees;
          
@@ -65,17 +63,17 @@ public class NormalAccount implements TypeOfAccounts{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             stmt2=Main.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             stmt2.setFloat(1, amount);
-            stmt2.setInt(2, acc.getAccNumber());
+            stmt2.setInt(2, acc2.getAccNumber());
             stmt2.executeUpdate();
             String sql="SELECT acc_balance FROM account WHERE acc_number = ?;";
             PreparedStatement stmt;
 
             stmt = Main.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, acc.getAccNumber());
+            stmt.setInt(1, acc2.getAccNumber());
             ResultSet set =stmt.executeQuery();
             set.next();
             int c= set.getInt(1);
-            System.out.println(c);
+           
             String query2="INSERT INTO transactions(trans_name,trans_amount,trans_date,acc_num1) VALUES(?,?,?,?);";
             PreparedStatement stmt3=Main.con.prepareStatement(query2,Statement.RETURN_GENERATED_KEYS);
             DateTimeFormatter date=DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm:ss");
@@ -84,7 +82,7 @@ public class NormalAccount implements TypeOfAccounts{
             stmt3.setString(1, "Deposit");
             stmt3.setFloat(2, amount);
             stmt3.setString(3, date.format(time));
-            stmt3.setInt(4,acc.getAccNumber());
+            stmt3.setInt(4,acc2.getAccNumber());
             stmt3.executeUpdate();
             return amount;
         } catch (SQLException ex) {

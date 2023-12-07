@@ -41,7 +41,7 @@ public class HistoryController implements Operations, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            model=Account.setInstance();
+            model=Account.getInstance();
             list = FXCollections.observableArrayList();
             ResultSet set= model.printHistory();
             

@@ -48,7 +48,7 @@ public class LoginModel {
                          type=new NormalAccount();
                          
                     }
-                    Account acc=Account.getInstance(type);
+                    Account acc=Account.setInstance(type);
                     
                     acc.setCustomerID(custID);
                     acc.setAccNumber(Integer.valueOf(username));
@@ -56,7 +56,7 @@ public class LoginModel {
                     acc.setaccounttype(acctype);
                     
                     
-                    System.out.println(acc.getAccNumber() +" "+acc.getAccPassword());
+                   
                     acc.setGreetingTXT("Welcome back " +name);
                     acc.setUserTXT("Username: " +username);
                     

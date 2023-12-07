@@ -30,7 +30,7 @@ public class OthersModel {
             stmt.setInt(2, 0);
             //stmt.setInt(3, Account.getCustID());
             if(stmt.executeUpdate() == 1){
-                System.out.println("Account created successfully");
+                
                 rs = stmt.getGeneratedKeys();
                 if(rs.next()){
                     this.acc_number = rs.getInt(1);

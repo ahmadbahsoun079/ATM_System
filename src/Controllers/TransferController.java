@@ -59,7 +59,7 @@ public class TransferController implements Operations, Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        model = Account.setInstance();
+        model = Account.getInstance();
         myChoiseBox.visibleProperty().setValue(false);
         label1.visibleProperty().setValue(false);
         
@@ -129,6 +129,7 @@ public class TransferController implements Operations, Initializable {
                         myChoiseBox.visibleProperty().setValue(true);
                         label1.visibleProperty().setValue(true);
                         myChoiseBox.getItems().addAll(currtype);
+                        myChoiseBox.setValue("USD");
                     }
                     else {
                         alert=new Alert(Alert.AlertType.ERROR);
@@ -150,18 +151,27 @@ public class TransferController implements Operations, Initializable {
             }
             else if(((Button)event.getSource()).getText().equals("Transfer")){
                 float amount=0;
-                if(myChoiseBox.getValue().equals("EUR")){
-                            Converter usdeuro = new USDEUROConverter();
-                            CurrencyConverter converter = new CurrencyConverter(usdeuro);
-                            amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
-                            
-                            
-                        }else {if(myChoiseBox.getValue().equals("LBP")){
-                             Converter usdlbn = new USDLBPConverter();
-                            CurrencyConverter converter = new CurrencyConverter(usdlbn);
-                            amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
-                            
-                        }else{amount=Float.parseFloat(resultArea.getText());}}
+                
+                String typec=myChoiseBox.getValue();
+                CurrencyConverter converter=null;
+                switch(typec){
+                    case "EUR":
+                        Converter usdeuro = new USDEUROConverter();
+                        converter = new CurrencyConverter(usdeuro);
+                        amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
+                        break;
+                    case "LBP":
+                        Converter usdlbn = new USDLBPConverter();
+                        converter = new CurrencyConverter(usdlbn);
+                        amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
+                        break;
+                    default:
+                        amount=Float.parseFloat(resultArea.getText());
+                        
+                    
+                        
+                }
+
                 if(model.checkamount(amount)){
                     try {
                         

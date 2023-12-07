@@ -47,7 +47,7 @@ public class WithdrawController implements Initializable, Operations {
     Account acc=null;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        acc=Account.setInstance();
+        acc=Account.getInstance();
 //        if(acc.getaccounttype().equals("vip")){
 //         model = new VIPAccount();   
 //        }else{

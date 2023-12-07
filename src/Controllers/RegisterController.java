@@ -202,8 +202,8 @@ public class RegisterController implements Initializable {
                     alert.initModality(Modality.APPLICATION_MODAL);
                     alert.initOwner((Stage)((Node) event.getSource()).getScene().getWindow());
                     alert.setContentText("**This message appears only once**\n"
-                            +"Your username: "+Account.setInstance().getAccNumber()
-                            +"\nYour PIN: "+Account.setInstance().getAccPassword());
+                            +"Your username: "+Account.getInstance().getAccNumber()
+                            +"\nYour PIN: "+Account.getInstance().getAccPassword());
                     alert.show();
                     Parent view = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
                     Scene scene = new Scene(view);

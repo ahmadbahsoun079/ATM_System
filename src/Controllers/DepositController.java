@@ -43,19 +43,18 @@ public class DepositController implements Operations, Initializable {
     @FXML private Button buttonCancel;
     @FXML private TextField resultArea;
     
-    private TypeOfAccounts model;
     Account acc=null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Account acc=Account.setInstance();
-        if(acc.getaccounttype().equals("vip")){
-         model = new VIPAccount();   
-        }
-        
-         
-        else{
-         model = new NormalAccount();   
-        }
+        Account acc = Account.getInstance();
+//        if(acc.getaccounttype().equals("vip")){
+//         model = new VIPAccount();   
+//        }
+//        
+//         
+//        else{
+//         model = new NormalAccount();   
+//        }
        
        
         
@@ -85,8 +84,9 @@ public class DepositController implements Operations, Initializable {
             resultArea.appendText("9");
         }else if (event.getSource()== buttonDeposit) {
             try {
-                int amount=Integer.parseInt(resultArea.getText());
-                float famount=model.makeDeposit(amount);
+                Account acc = Account.getInstance();
+                float amount=Integer.parseInt(resultArea.getText());
+                float famount=acc.makeDeposit(amount);
                 float fees=amount-famount;
                 resultArea.clear();
                   

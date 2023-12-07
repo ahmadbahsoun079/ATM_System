@@ -21,13 +21,13 @@ public  class Account<T extends TypeOfAccounts> {
         this.object = object;
     }
 
-    public static  <T extends TypeOfAccounts> Account<T> getInstance(T object){
+    public static  <T extends TypeOfAccounts> Account<T> setInstance(T object){
         if(account == null){
             account = new Account<>(object);
         }
         return (Account<T>) account;
     }
-    public static  <T extends TypeOfAccounts> Account<T> setInstance(){
+    public static  <T extends TypeOfAccounts> Account<T> getInstance(){
         return (Account<T>)account;
     }
    
@@ -88,7 +88,9 @@ public  class Account<T extends TypeOfAccounts> {
         return this.txt_greeting;
     }
    
-    
+    public float makeDeposit(float amount) throws ClassNotFoundException{
+        return object.makeDeposit(amount);
+    }
     public float getBalance() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

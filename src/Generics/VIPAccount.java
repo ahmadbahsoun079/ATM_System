@@ -13,12 +13,10 @@ import java.util.logging.Logger;
 
 public class VIPAccount implements TypeOfAccounts{
    
-    Account acc=Account.setInstance();
+    Account acc=Account.getInstance();
 
     public VIPAccount() {
-          System.out.println("00000");
-    System.out.println("i am vip");
-     System.out.println("00000");
+        
     }
     
     
@@ -28,20 +26,22 @@ public class VIPAccount implements TypeOfAccounts{
         
         
         try {
-            acc.settva((float) 0.000);
-        
+            Account acc2=Account.getInstance();
+            
+            acc2.settva((float) 0.000);
+            
             String query="UPDATE account SET acc_balance=acc_balance+? WHERE acc_number = ?;";
             PreparedStatement stmt2;
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             stmt2=Main.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             stmt2.setFloat(1, amount);
-            stmt2.setInt(2, acc.getAccNumber());
+            stmt2.setInt(2, acc2.getAccNumber());
             stmt2.executeUpdate();
             String sql="SELECT acc_balance FROM account WHERE acc_number = ?;";
             PreparedStatement stmt;
 
             stmt = Main.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, acc.getAccNumber());
+            stmt.setInt(1, acc2.getAccNumber());
             ResultSet set =stmt.executeQuery();
             set.next();
             int c= set.getInt(1);
@@ -54,7 +54,7 @@ public class VIPAccount implements TypeOfAccounts{
             stmt3.setString(1, "Deposit");
             stmt3.setFloat(2, amount);
             stmt3.setString(3, date.format(time));
-            stmt3.setInt(4,acc.getAccNumber());
+            stmt3.setInt(4,acc2.getAccNumber());
             stmt3.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,9 +64,7 @@ public class VIPAccount implements TypeOfAccounts{
      
      
      public  float withdraw(float amount) throws SQLException, ClassNotFoundException{
-          System.out.println("11111111111111111111111111111");
-        System.out.println("i am vipwithdraw");
-            System.out.println("1111111111111111111");
+         
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String q1="UPDATE account SET acc_balance=acc_balance-? Where acc_number=?; ";
         PreparedStatement stmt=Main.con.prepareStatement(q1,Statement.RETURN_GENERATED_KEYS);

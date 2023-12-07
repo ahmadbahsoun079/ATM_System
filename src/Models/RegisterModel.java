@@ -74,7 +74,7 @@ public class RegisterModel {
                     }else{
                          type=new NormalAccount();
                     }
-                    Account acc=Account.getInstance(type);
+                    Account acc=Account.setInstance(type);
                        
                         acc.setCustomerID(cust_ID);
                         acc.setAccNumber(acc_number);

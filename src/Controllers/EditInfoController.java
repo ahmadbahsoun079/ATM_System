@@ -40,7 +40,7 @@ public class EditInfoController implements Operations, Initializable {
     @FXML private Label lbl;
     private Account model;        
     @Override
-    public void initialize(URL location, ResourceBundle resources) {model=Account.setInstance();}
+    public void initialize(URL location, ResourceBundle resources) {model=Account.getInstance();}
 
     @FXML public void handleButtonAction(ActionEvent event) throws IOException, ClassNotFoundException {
         if (event.getSource() == button0) {

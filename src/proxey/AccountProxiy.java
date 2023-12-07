@@ -19,7 +19,7 @@ import java.sql.Statement;
  * @author lenovo
  */
 public class AccountProxiy implements TypeOfAccounts {
-    Account acc=Account.setInstance();
+    Account acc=Account.getInstance();
     TypeOfAccounts model=null;
     
     public AccountProxiy() {
@@ -56,9 +56,7 @@ public class AccountProxiy implements TypeOfAccounts {
                 return -1;
             }
             else{
-                System.out.println("00000");
-                System.out.println("i arrived to here-------------------------------1-------------------");
-               System.out.println("00000");
+               
                 return model.withdraw(amount);
             }
         }

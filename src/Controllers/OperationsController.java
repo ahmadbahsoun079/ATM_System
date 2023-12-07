@@ -31,9 +31,9 @@ public class OperationsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){
         
-        model =Account.setInstance();
-        TXT_greeting.setText(Account.setInstance().getGreetingTXT());
-        TXT_username.setText(Account.setInstance().getUserTXT());
+        model =Account.getInstance();
+        TXT_greeting.setText(Account.getInstance().getGreetingTXT());
+        TXT_username.setText(Account.getInstance().getUserTXT());
     }
     
     @FXML public void removeCard(ActionEvent event){
