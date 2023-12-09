@@ -68,35 +68,24 @@ public class TransferController implements Operations, Initializable {
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException //This function handles button events
             , IOException {
-        //From buttons0 to buttons9 all when pressed append the number pressed to the end of the already typed number
-        if (event.getSource() == button0) {
-            resultArea.appendText("0");
-        } else if (event.getSource() == button1) {
-            resultArea.appendText("1");
-        } else if (event.getSource() == button2) {
-            resultArea.appendText("2");
-        } else if (event.getSource() == button3) {
-            resultArea.appendText("3");
-        } else if (event.getSource() == button4) {
-            resultArea.appendText("4");
-        } else if (event.getSource() == button5) {
-            resultArea.appendText("5");
-        } else if (event.getSource() == button6) {
-            resultArea.appendText("6");
-        } else if (event.getSource() == button7) {
-            resultArea.appendText("7");
-        } else if (event.getSource() == button8) {
-            resultArea.appendText("8");
-        } else if (event.getSource() == button9) {
-            resultArea.appendText("9");
-        } else if (event.getSource() == buttonCancel) {
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
-            Scene scene = new Scene(root);
-            Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            newStage.setScene(scene);
-            newStage.show();
-            
-        }
+        //we use  lambda expressions to handle buttons clicks
+       button0.setOnAction(events -> resultArea.appendText("0"));
+         button1.setOnAction(events -> resultArea.appendText("1"));
+         button2.setOnAction(events -> resultArea.appendText("2"));
+         button3.setOnAction(events -> resultArea.appendText("3")); 
+         button4.setOnAction(events -> resultArea.appendText("4"));
+         button5.setOnAction(events -> resultArea.appendText("5"));
+         button6.setOnAction(events -> resultArea.appendText("6"));
+         button7.setOnAction(events -> resultArea.appendText("7"));
+         button8.setOnAction(events -> resultArea.appendText("8"));
+         button9.setOnAction(events -> resultArea.appendText("9"));
+          buttonCancel.setOnAction(events->{
+             try {
+                 canclehandle(event);
+             } catch (IOException ex) {
+                 Logger.getLogger(EditInfoController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         });
     }
 
     public void delete(MouseEvent event) {
@@ -156,11 +145,13 @@ public class TransferController implements Operations, Initializable {
                 CurrencyConverter converter=null;
                 switch(typec){
                     case "EUR":
+                        //here we use the adapter disgn pattern since the type of curreincy is in eur so we want to convert it to usd
                         Converter usdeuro = new USDEUROConverter();
                         converter = new CurrencyConverter(usdeuro);
                         amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
                         break;
                     case "LBP":
+                         //here we use the adapter disgn pattern since the type of curreincy is in eur so we want to convert it to usd
                         Converter usdlbn = new USDLBPConverter();
                         converter = new CurrencyConverter(usdlbn);
                         amount=converter.performConversion(Integer.parseInt(resultArea.getText()));
@@ -211,5 +202,12 @@ public class TransferController implements Operations, Initializable {
             alert.show();
             resultArea.clear();
         }
+    }
+     private void canclehandle(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(getClass().getResource("/Views/OthersView.fxml"));
+            Scene scene=new Scene(root);
+            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            newStage.setScene(scene);
+            newStage.show(); 
     }
 }

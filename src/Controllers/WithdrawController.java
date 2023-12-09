@@ -23,12 +23,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.EventHandler;
 import javafx.stage.Modality;
-import proxey.AccountProxiy;
+import proxy.AccountProxiy;
 
 
 
 public class WithdrawController implements Initializable, Operations {
+    //we use  lambda expressions to handle buttons clicks
     @FXML private Button button0;
     @FXML private Button button1;
     @FXML private Button button2;
@@ -48,38 +52,60 @@ public class WithdrawController implements Initializable, Operations {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         acc=Account.getInstance();
-//        if(acc.getaccounttype().equals("vip")){
-//         model = new VIPAccount();   
-//        }else{
-//         model = new NormalAccount();   
-//        }
+
          proxiyaccount=new AccountProxiy();
          
         
     }
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException , IOException {
-        if (event.getSource() == button0) {
-            resultArea.appendText("0");
-        } else if (event.getSource() == button1) {
-            resultArea.appendText("1");
-        } else if (event.getSource() == button2) {
-            resultArea.appendText("2");
-        } else if (event.getSource() == button3) {
-            resultArea.appendText("3");
-        } else if (event.getSource() == button4) {
-            resultArea.appendText("4");
-        } else if (event.getSource() == button5) {
-            resultArea.appendText("5");
-        } else if (event.getSource() == button6) {
-            resultArea.appendText("6");
-        } else if (event.getSource() == button7) {
-            resultArea.appendText("7");
-        } else if (event.getSource() == button8) {
-            resultArea.appendText("8");
-        } else if (event.getSource() == button9) {
-            resultArea.appendText("9");
-        }else if(event.getSource()==buttonWithdraw) {
-            try {
+        button0.setOnAction(events -> resultArea.appendText("0"));
+         button1.setOnAction(events -> resultArea.appendText("1"));
+         button2.setOnAction(events -> resultArea.appendText("2"));
+         button3.setOnAction(events -> resultArea.appendText("3")); 
+         button4.setOnAction(events -> resultArea.appendText("4"));
+         button5.setOnAction(events -> resultArea.appendText("5"));
+         button6.setOnAction(events -> resultArea.appendText("6"));
+         button7.setOnAction(events -> resultArea.appendText("7"));
+         button8.setOnAction(events -> resultArea.appendText("8"));
+         button9.setOnAction(events -> resultArea.appendText("9"));
+         buttonCancel.setOnAction(events->{
+             try {
+                 canclehandle(event);
+             } catch (IOException ex) {
+                 Logger.getLogger(EditInfoController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         });
+          
+         buttonWithdraw.setOnAction(events->withdrawHandle(event));
+         
+         if(event.getSource()==buttonWithdraw) {
+            
+         
+        
+    }
+    }
+    public void delete(MouseEvent event) {
+        resultArea.clear();
+    }
+    
+    @Override
+    public void go(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/WithdrawView.fxml"));
+        Scene scene = new Scene(root);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(scene);
+        newStage.show();
+    }
+     private void canclehandle(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(getClass().getResource("/Views/OthersView.fxml"));
+            Scene scene=new Scene(root);
+            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            newStage.setScene(scene);
+            newStage.show(); 
+    }
+
+    private void withdrawHandle(ActionEvent event) {
+       try {
                 int amount=Integer.parseInt(resultArea.getText());
                 float famount=proxiyaccount.withdraw(amount);
                 if(famount!=-1) {
@@ -116,26 +142,15 @@ public class WithdrawController implements Initializable, Operations {
                 alert.setContentText("Please enter a valid amount");
                 alert.show();
                 resultArea.clear();
-            }
+            } catch (IOException ex) {
+            Logger.getLogger(WithdrawController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(WithdrawController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(WithdrawController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else if (event.getSource()==buttonCancel) {
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
-            Scene scene=new Scene(root);
-            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            newStage.setScene(scene);
-            newStage.show();
-        }
-    }
-    public void delete(MouseEvent event) {
-        resultArea.clear();
-    }
-    
-    @Override
-    public void go(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/WithdrawView.fxml"));
-        Scene scene = new Scene(root);
-        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        newStage.setScene(scene);
-        newStage.show();
     }
 }
+
+            
+

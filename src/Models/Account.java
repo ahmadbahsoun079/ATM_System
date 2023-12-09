@@ -14,19 +14,28 @@ import java.io.IOException;
 
 public  class Account<T extends TypeOfAccounts> {
 
+    //here is a singelton class were we use it to not lose the instance of the class when we login or register
+    //we also use generic class because we dont matter what kind of account we have vipaccount or normal acount
+    //what we want is to store these instance
+    
     private static Account<?> account;
+    
+    //here is the account we login with it ,it can be of type vipoaccount or normalaccount
     private T object;
 
     private Account(T object){
         this.object = object;
     }
 
+    //here to set the instance
     public static  <T extends TypeOfAccounts> Account<T> setInstance(T object){
         if(account == null){
             account = new Account<>(object);
         }
         return (Account<T>) account;
     }
+    
+    //here to get that instance
     public static  <T extends TypeOfAccounts> Account<T> getInstance(){
         return (Account<T>)account;
     }
@@ -89,6 +98,7 @@ public  class Account<T extends TypeOfAccounts> {
     }
    
     public float makeDeposit(float amount) throws ClassNotFoundException{
+        //here if the object is vip so will go to vip make deposit
         return object.makeDeposit(amount);
     }
     public float getBalance() {

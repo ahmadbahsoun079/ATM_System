@@ -18,12 +18,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 
 
 public class EditInfoController implements Operations, Initializable {
-    
+    //we use  lambda expressions to handle buttons clicks
     @FXML private Button button0;
     @FXML private Button button1;
     @FXML private Button button2;
@@ -43,34 +45,24 @@ public class EditInfoController implements Operations, Initializable {
     public void initialize(URL location, ResourceBundle resources) {model=Account.getInstance();}
 
     @FXML public void handleButtonAction(ActionEvent event) throws IOException, ClassNotFoundException {
-        if (event.getSource() == button0) {
-            resultArea.appendText("0");
-        } else if (event.getSource() == button1) {
-            resultArea.appendText("1");
-        } else if (event.getSource() == button2) {
-            resultArea.appendText("2");
-        } else if (event.getSource() == button3) {
-            resultArea.appendText("3");
-        } else if (event.getSource() == button4) {
-            resultArea.appendText("4");
-        } else if (event.getSource() == button5) {
-            resultArea.appendText("5");
-        } else if (event.getSource() == button6) {
-            resultArea.appendText("6");
-        } else if (event.getSource() == button7) {
-            resultArea.appendText("7");
-        } else if (event.getSource() == button8) {
-            resultArea.appendText("8");
-        } else if (event.getSource() == button9) {
-            resultArea.appendText("9");
-        }
-        else if (event.getSource()==buttonCancel) {
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/OthersView.fxml"));
-            Scene scene=new Scene(root);
-            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            newStage.setScene(scene);
-            newStage.show();
-        }
+         button0.setOnAction(events -> resultArea.appendText("0"));
+         button1.setOnAction(events -> resultArea.appendText("1"));
+         button2.setOnAction(events -> resultArea.appendText("2"));
+         button3.setOnAction(events -> resultArea.appendText("3")); 
+         button4.setOnAction(events -> resultArea.appendText("4"));
+         button5.setOnAction(events -> resultArea.appendText("5"));
+         button6.setOnAction(events -> resultArea.appendText("6"));
+         button7.setOnAction(events -> resultArea.appendText("7"));
+         button8.setOnAction(events -> resultArea.appendText("8"));
+         button9.setOnAction(events -> resultArea.appendText("9"));
+         buttonCancel.setOnAction(events->{
+             try {
+                 canclehandle(event);
+             } catch (IOException ex) {
+                 Logger.getLogger(EditInfoController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         });
+         
     }
     
     public void delete(MouseEvent event) {
@@ -138,5 +130,13 @@ public class EditInfoController implements Operations, Initializable {
         Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newStage.setScene(scene);
         newStage.show();
+    }
+
+    private void canclehandle(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(getClass().getResource("/Views/OthersView.fxml"));
+            Scene scene=new Scene(root);
+            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            newStage.setScene(scene);
+            newStage.show(); 
     }
 }

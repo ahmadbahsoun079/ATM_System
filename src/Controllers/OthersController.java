@@ -1,7 +1,7 @@
 package Controllers;
 
 import Models.Account;
-import Models.OthersModel;
+
 import OperationFactory.Operations;
 import OperationFactory.OperationsFactory;
 import javafx.event.ActionEvent;
@@ -26,12 +26,12 @@ import java.util.logging.Logger;
 
 
 public class OthersController implements Initializable {
-    private OthersModel model;
+    
   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = new OthersModel();
+        
    }
     
     @FXML public void editInformation(ActionEvent event){}

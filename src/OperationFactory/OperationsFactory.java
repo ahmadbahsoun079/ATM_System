@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 public class OperationsFactory {
     public static Operations createOperation(Button type)
     {
-        
+        //check wich object to create it depends on the user what he clicked
         switch (type.getText()) {
             case "Check Balance History":
                 return new HistoryController();

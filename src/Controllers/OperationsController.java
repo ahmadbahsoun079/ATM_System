@@ -81,6 +81,7 @@ public class OperationsController implements Initializable {
     }
     
     public void handleButton(ActionEvent event) throws IOException {
+        //here we call the factory class to handle the objects that we will be create
         Operations op= OperationsFactory.createOperation((Button) event.getSource());
         op.go(event);
     }

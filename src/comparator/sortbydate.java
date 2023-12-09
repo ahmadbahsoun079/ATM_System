@@ -13,6 +13,7 @@ import java.util.Comparator;
  */
 public class sortbydate implements Comparator<SQLTable>{
 
+    //here we use comparator to make our own edited comparision depends on the date
     @Override
     public int compare(SQLTable o1, SQLTable o2) {
          return  o1.dateProperty().get().compareTo(o2.dateProperty().get()); }

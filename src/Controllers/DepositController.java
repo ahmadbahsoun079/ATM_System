@@ -24,6 +24,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 import Models.Account;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DepositController implements Operations, Initializable {
@@ -47,14 +49,7 @@ public class DepositController implements Operations, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Account acc = Account.getInstance();
-//        if(acc.getaccounttype().equals("vip")){
-//         model = new VIPAccount();   
-//        }
-//        
-//         
-//        else{
-//         model = new NormalAccount();   
-//        }
+
        
        
         
@@ -62,28 +57,49 @@ public class DepositController implements Operations, Initializable {
     }
     
     @FXML public void handleButtonAction(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {
-        if (event.getSource() == button0) {
-            resultArea.appendText("0");
-        } else if (event.getSource() == button1) {
-            resultArea.appendText("1");
-        } else if (event.getSource() == button2) {
-            resultArea.appendText("2");
-        } else if (event.getSource() == button3) {
-            resultArea.appendText("3");
-        } else if (event.getSource() == button4) {
-            resultArea.appendText("4");
-        } else if (event.getSource() == button5) {
-            resultArea.appendText("5");
-        } else if (event.getSource() == button6) {
-            resultArea.appendText("6");
-        } else if (event.getSource() == button7) {
-            resultArea.appendText("7");
-        } else if (event.getSource() == button8) {
-            resultArea.appendText("8");
-        } else if (event.getSource() == button9) {
-            resultArea.appendText("9");
-        }else if (event.getSource()== buttonDeposit) {
+       
+        //we use  lambda expressions to handle buttons clicks
+        
+        
+        
+        button0.setOnAction(events -> resultArea.appendText("0"));
+         button1.setOnAction(events -> resultArea.appendText("1"));
+         button2.setOnAction(events -> resultArea.appendText("2"));
+         button3.setOnAction(events -> resultArea.appendText("3")); 
+         button4.setOnAction(events -> resultArea.appendText("4"));
+         button5.setOnAction(events -> resultArea.appendText("5"));
+         button6.setOnAction(events -> resultArea.appendText("6"));
+         button7.setOnAction(events -> resultArea.appendText("7"));
+         button8.setOnAction(events -> resultArea.appendText("8"));
+         button9.setOnAction(events -> resultArea.appendText("9"));
+         buttonDeposit.setOnAction(events -> {
+            
             try {
+                depositehandle(event);
+            } catch (IOException ex) {
+                Logger.getLogger(DepositController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        });
+        buttonCancel.setOnAction(events->{
+            try {
+                canclehandle(event);
+            } catch (IOException ex) {
+                Logger.getLogger(DepositController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         
+        if (event.getSource()==buttonCancel) {
+            
+        }
+    }
+    
+    public void delete(MouseEvent event) {
+        resultArea.clear();
+    }
+    
+    public void depositehandle(ActionEvent event) throws IOException{
+       try {
                 Account acc = Account.getInstance();
                 float amount=Integer.parseInt(resultArea.getText());
                 float famount=acc.makeDeposit(amount);
@@ -109,19 +125,9 @@ public class DepositController implements Operations, Initializable {
                 alert.setContentText("You need to enter a valid amount");
                 alert.show();
                 resultArea.clear();
-            }
-        }
-        else if (event.getSource()==buttonCancel) {
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
-            Scene scene=new Scene(root);
-            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-            newStage.setScene(scene);
-            newStage.show();
-        }
-    }
-    
-    public void delete(MouseEvent event) {
-        resultArea.clear();
+            } catch (ClassNotFoundException ex) { 
+            Logger.getLogger(DepositController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @Override
@@ -131,6 +137,14 @@ public class DepositController implements Operations, Initializable {
         Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newStage.setScene(scene);
         newStage.show();
+    }
+
+    private void canclehandle(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/OperationsView.fxml"));
+            Scene scene=new Scene(root);
+            Stage newStage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+            newStage.setScene(scene);
+            newStage.show();
     }
 
 }

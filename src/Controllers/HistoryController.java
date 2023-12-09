@@ -67,6 +67,7 @@ public class HistoryController implements Operations, Initializable {
     }
     
     public void checkHistory(ActionEvent event) throws SQLException, ClassNotFoundException {
+         //here to make comparator depends on date
         FXCollections.sort(list, new sortbydate());
         table.refresh();
         
@@ -74,7 +75,7 @@ public class HistoryController implements Operations, Initializable {
     }
     public void checknewHistory(ActionEvent event) throws SQLException, ClassNotFoundException  {
        
-     
+     //here to make comparator depends on amount
        FXCollections.sort(list, new sortbyamount());
        
        table.refresh();

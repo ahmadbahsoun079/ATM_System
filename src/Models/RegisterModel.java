@@ -50,7 +50,7 @@ public class RegisterModel {
         customer.setString(5, BDay);
         customer.setString(6, gender);
         
-        //customer.setString(7, acctype);
+       
         if(customer.executeUpdate() == 1){
             System.out.println("Data insert successfully");
             rs = customer.getGeneratedKeys();

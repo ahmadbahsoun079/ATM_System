@@ -38,7 +38,7 @@ public class LoginModel {
                     TypeOfAccounts type;
                      
                     String name = rs.getString(1);
-                    
+                    //here we check the type of the user to create the account and then store it inthe singelton class account
                     if(acctype.equals("vip")){
                         
                          type=new VIPAccount();
